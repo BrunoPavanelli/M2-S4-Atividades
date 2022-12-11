@@ -19,4 +19,7 @@ const alunos = [
      nome: "Marcos",
      nota: 6
     },
- ]
+ ];
+
+ const studentsThatPasses = alunos.filter(student => student.nota >= 6);
+ console.log(studentsThatPasses);
