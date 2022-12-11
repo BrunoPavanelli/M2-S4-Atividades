@@ -24,13 +24,24 @@ const products =  [
     category: "massas",
     price: 90.00
  }
-]
+];
 
 const orderFromSmallestToLargestPrice = (array = []) => {
-}
+   const arrayInDecrescentOrder = array.sort((productA, productB) => {
+      if (productA.price < productB.price) return -1
+   });
+   return arrayInDecrescentOrder;
+};
+
+console.log('Ordered in decrescent order');
+console.log(products, orderFromSmallestToLargestPrice());
+
 const orderLargestFromToSmallestPrice = (array = []) => {
-}
+   const arrayInDecrescentOrder = array.sort((productA, productB) => {
+      if (productA.price > productB.price) return -1
+   });
+   return arrayInDecrescentOrder;
+};
 
-
-// console.log("data", orderFromSmallestToLargestPrice(products))
-// console.log("data", orderLargestFromToSmallestPrice(products))
+console.log('Ordered in crescent order');
+console.log(products, orderLargestFromToSmallestPrice());
