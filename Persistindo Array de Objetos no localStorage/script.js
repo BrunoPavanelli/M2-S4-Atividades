@@ -1,35 +1,51 @@
-function createTask() {
-    const tasksList = document.querySelector('.tasks__list')
-    const taskCreatorInput = document.querySelector('.create-tasks__inpt')
+const tasksList = document.querySelector('.tasks__list')
+const taskCreatorInput = document.querySelector('.create-tasks__inpt')
 
-    const listBox = document.createElement('li')
-    const listTask = document.createElement('p')
-    const btnTaskRemove = document.createElement('button')
+// DataBase Array that recieves the add Tasks
+let arrayOfTasks = []
 
-    listBox.classList.add('tasks__item', 'container', 'intern-padding', 'space-between', 'item-height', 'border-radius__8')
-    btnTaskRemove.classList.add('tasks__remove')
-    btnTaskRemove.dataset.id = tasksList.childElementCount + 1
+function updataArrayOfTasks() {
+    let task = {
+        id: arrayOfTasks.length,
+        taskDescription: taskCreatorInput.value
+    }
 
-    listTask.innerText = taskCreatorInput.value
-    btnTaskRemove.innerText = 'Remove'
+    arrayOfTasks.push(task)
+}
 
-    listBox.append(listTask, btnTaskRemove)
+function renderTasks() {
+    arrayOfTasks.forEach((task)=> {  
+        const listBox = document.createElement('li')
+        const listTask = document.createElement('p')
+        const btnTaskRemove = document.createElement('button')
 
-    return listBox
+        listBox.classList.add('tasks__item', 'container', 'intern-padding', 'space-between', 'item-height', 'border-radius__8')
+        btnTaskRemove.classList.add('tasks__remove')
+        btnTaskRemove.dataset.id = task.id
+
+        listTask.innerText = task.taskDescription
+        btnTaskRemove.innerText = 'Remove'
+
+        listBox.append(listTask, btnTaskRemove)
+        tasksList.append(listBox)
+    }) 
+
+    removeTaskFromList()
 }
 
 function addTasksToList() {
-    const tasksList = document.querySelector('.tasks__list')
     const btnAddTasksToList = document.querySelector('.create-task__submit')
-
+ 
     btnAddTasksToList.addEventListener('click', (e) => {
         e.preventDefault()
 
-        const task = createTask()
+        updataArrayOfTasks()
 
-        tasksList.append(task)
+        tasksList.innerHTML = ''
 
-        removeTaskFromList()
+        renderTasks()
+
+        taskCreatorInput.value = ''
     })
 }
 
@@ -38,11 +54,22 @@ function removeTaskFromList() {
 
     btnRemoveTasksFromList.forEach(button => {
         button.addEventListener('click', (e) => {
-            const listBox = e.composedPath()[1]
+            let btnRemoveId = e.target.dataset.id
+            console.log(btnRemoveId)
+
+            let indexForRemove = arrayOfTasks.findIndex(task => btnRemoveId == task.id)
             
-            listBox.remove()
+            arrayOfTasks.splice(indexForRemove, 1)
+
+            tasksList.innerHTML = ''
+            
+            renderTasks()
+
+            console.log(arrayOfTasks)
         })
     })
 }
 
 addTasksToList()
+
+
