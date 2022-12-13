@@ -1,6 +1,10 @@
-
 const tasksList = document.querySelector('.tasks__list')
 const taskCreatorInput = document.querySelector('.create-tasks__inpt')
+const addModal = document.querySelector('.task__added')
+const modalDiv = document.querySelector('.modal__info')
+const modalText = document.querySelector('.modal__txt')
+const modalTimeIn = 2000
+const modalTimeExposed = 3000
 
 // DataBase Array that recieves the added Tasks
 let arrayOfTasks = []
@@ -40,20 +44,30 @@ function addTasksToList() {
     btnAddTasksToList.addEventListener('click', (e) => {
         e.preventDefault()
 
-        updataArrayOfTasks()
+        if (taskCreatorInput.value) {
+            updataArrayOfTasks()
 
-        tasksList.innerHTML = ''
+            tasksList.innerHTML = ''
 
-        renderTasks(arrayOfTasks)
+            renderTasks(arrayOfTasks)
 
-        let listOfTasks = JSON.stringify(arrayOfTasks)
-        localStorage.setItem('@persistArray:listOfTask', listOfTasks)
+            let listOfTasks = JSON.stringify(arrayOfTasks)
 
-        taskCreatorInput.value = ''
+            localStorage.setItem('@persistArray:listOfTask', listOfTasks)
+
+            showAndCloseToast('Task added succesfully') 
+            
+            taskCreatorInput.value = ''
+
+        } else if (!taskCreatorInput.value) {
+            showAndCloseErrorToast() 
+            
+        }
     })
 }
 
 function removeTaskFromList() {
+
     const btnRemoveTasksFromList = document.querySelectorAll('.tasks__remove')
 
     btnRemoveTasksFromList.forEach(button => {
@@ -70,6 +84,8 @@ function removeTaskFromList() {
             localStorage.setItem('@persistArray:listOfTask', listOfTasks)
             
             renderTasks(arrayOfTasks)
+
+            showAndCloseToast('Task removed succesfully')
         })
     })
 }
@@ -85,6 +101,34 @@ function renderDatainLocalStorage() {
 
         renderTasks(convertedListOfTasks)
     }
+}
+
+function showAndCloseToast(text) {
+    modalText.innerText = text
+        addModal.show()
+        setTimeout(() => {
+            addModal.classList.add('modal__out')
+        }, modalTimeIn)
+        // setTimeout(() => )
+        setTimeout(() => {
+            addModal.close()
+            addModal.classList.remove('modal__out')
+        }, modalTimeExposed) 
+}
+
+function showAndCloseErrorToast() {
+    modalDiv.classList.add('modal__error')
+    modalText.innerText = 'Please, insert your Task'
+    addModal.show()
+    setTimeout(() => {
+        addModal.classList.add('modal__out')
+    }, modalTimeIn)
+
+    setTimeout(() => {
+        addModal.close()
+        addModal.classList.remove('modal__out')
+        modalDiv.classList.remove('modal__error')
+    }, modalTimeExposed)
 }
 
 addTasksToList()

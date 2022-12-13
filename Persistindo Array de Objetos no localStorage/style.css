@@ -1,14 +1,17 @@
 :root {
     /* colors */
     --brand-1: #269fcb;
-    --brand-2: rgb(75, 97, 202);
+    --brand-2: #4faed1;
     --brand-3: #e2c21f;
-    --grey-1: rgba(30, 30, 30, 1);
+    --brand-4: #ffd500;
+    --grey-1: #1a3654;
     --grey-2: rgba(73, 80, 87, 1);
     --grey-3: rgba(134, 142, 150, 1);
     --grey-4: rgba(222, 226, 230, 1);
     --grey-5: rgba(241, 243, 245, 1);
     --grey-6: rgba(248, 249, 250, 1);
+    --modal-add: #4ba256;
+    --error-: #c64242;
 
     /* font-sizes */
     --fs-24: 1.5rem;
@@ -126,11 +129,12 @@ main > h5 {
     background-color: var(--brand-1);
     color: white;
     padding: .4rem  .9rem;
+    transition: .25s ease-in-out;
 }
 
 .create-task__submit:hover {
     background-color: var(--brand-2);
-    color: var(--grey-4);
+    color: var(--brand-4);
 }
 
 /* Tasks List */
@@ -149,6 +153,16 @@ main > h5 {
 
 .tasks__item {
     background-color: var(--grey-5);
+    transition: .25s ease-in-out;
+}
+
+.tasks__item:hover {
+    background-color: var(--brand-3);
+    transition: .25s ease-in-out;
+}
+
+.tasks__item:hover p {
+    color: var(--grey-1);
 }
 
 .tasks__item > p {
@@ -162,14 +176,93 @@ main > h5 {
 .tasks__remove {
     background-color: var(--grey-4);
     color: var(--grey-2);
+    transition: .25s ease-in-out;
 }
 
 .tasks__remove:hover {
-    background-color: var(--grey-3);
-    color: var(--grey-5);
+    background-color: var(--grey-2);
+    color: var(--brand-4);
+}
+
+/* Modals */
+
+.modals {
+    height: max-content;
+    width: max-content;
+    position: absolute;
+    top: 150px;
+    left: 42.2vw;
+    z-index: 100;
+}
+
+dialog {
+    border-radius: 1rem;
+    animation: modal-in 1s ease-in-out;
+}
+
+.modal__info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 200px;
+    border-radius: var(--br-8);
+    background-color: var(--modal-add);
+}
+
+.modal__green {
+    background-color: var(--modal-add);
+}
+
+.modal__txt {
+    color: var(--brand-4) !important;
+}
+
+.modal__out {
+    animation: modal-out 1s ease-in-out forwards; 
+}
+
+.modal__error {
+    background-color: var(--error-) !important; 
+}
+
+@keyframes modal-in {
+    0% {
+        opacity: 0;
+        transform: translateY(-150%);
+    }
+    50% {
+        opacity: .7;
+        transform: translateY(20%);
+    }
+    80% {
+        opacity: 1;
+        transform: translateY(-10%);
+    }
+    100% {
+        transform: translateY(0);
+    }
+
 }
 
 
+@keyframes modal-out {
+    100% {
+        opacity: .4;
+        transform: translateY(-150%);
+    }
+    80% {
+        opacity: .9;
+        transform: translateY(20%);
+    }
+    50% {
+        transform: translateY(-10%);
+    }
+    0% {
+        transform: translateY(0);
+    }
+
+}
 
 
 
