@@ -1,7 +1,8 @@
+
 const tasksList = document.querySelector('.tasks__list')
 const taskCreatorInput = document.querySelector('.create-tasks__inpt')
 
-// DataBase Array that recieves the add Tasks
+// DataBase Array that recieves the added Tasks
 let arrayOfTasks = []
 
 function updataArrayOfTasks() {
@@ -13,8 +14,8 @@ function updataArrayOfTasks() {
     arrayOfTasks.push(task)
 }
 
-function renderTasks() {
-    arrayOfTasks.forEach((task)=> {  
+function renderTasks(array) {
+    array.forEach((task)=> {  
         const listBox = document.createElement('li')
         const listTask = document.createElement('p')
         const btnTaskRemove = document.createElement('button')
@@ -43,7 +44,10 @@ function addTasksToList() {
 
         tasksList.innerHTML = ''
 
-        renderTasks()
+        renderTasks(arrayOfTasks)
+
+        let listOfTasks = JSON.stringify(arrayOfTasks)
+        localStorage.setItem('@persistArray:listOfTask', listOfTasks)
 
         taskCreatorInput.value = ''
     })
@@ -55,7 +59,6 @@ function removeTaskFromList() {
     btnRemoveTasksFromList.forEach(button => {
         button.addEventListener('click', (e) => {
             let btnRemoveId = e.target.dataset.id
-            console.log(btnRemoveId)
 
             let indexForRemove = arrayOfTasks.findIndex(task => btnRemoveId == task.id)
             
@@ -63,13 +66,28 @@ function removeTaskFromList() {
 
             tasksList.innerHTML = ''
             
-            renderTasks()
-
-            console.log(arrayOfTasks)
+            let listOfTasks = JSON.stringify(arrayOfTasks)
+            localStorage.setItem('@persistArray:listOfTask', listOfTasks)
+            
+            renderTasks(arrayOfTasks)
         })
     })
 }
 
+function renderDatainLocalStorage() {
+    const listOfTasksinLS = localStorage.getItem('@persistArray:listOfTask')
+    console.log(listOfTasksinLS)
+
+    if (listOfTasksinLS) {
+        const convertedListOfTasks = JSON.parse(listOfTasksinLS)
+
+        arrayOfTasks = convertedListOfTasks
+
+        renderTasks(convertedListOfTasks)
+    }
+}
+
 addTasksToList()
+renderDatainLocalStorage()
 
 
