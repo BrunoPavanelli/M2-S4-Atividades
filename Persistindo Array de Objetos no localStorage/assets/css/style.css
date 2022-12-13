@@ -70,7 +70,7 @@ body {
     height: 100vh;
     display: flex;
     justify-content: center;
-    background-image: url(./todo-background.png);
+    background-image: url(../../assets/img/todo-background.png);
     background-repeat: no-repeat;
     background-size: cover;
 }
