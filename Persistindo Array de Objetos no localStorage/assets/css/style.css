@@ -145,6 +145,8 @@ main > h5 {
     max-height: 22rem;
     overflow-y: auto;
     overflow-x: hidden;
+    width: max-content;
+    padding-right: .55rem;
 }
 
 .scroller {
@@ -154,6 +156,7 @@ main > h5 {
 .tasks__item {
     background-color: var(--grey-5);
     transition: .25s ease-in-out;
+    flex-shrink: 0;
 }
 
 .tasks__item:hover {
