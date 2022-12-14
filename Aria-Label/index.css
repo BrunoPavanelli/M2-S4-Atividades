@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background: #0000ff;
+  font-family: 'Roboto', sans-serif;
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.header {
+  padding: 2rem;
+  background: #ffffff;
+}
+.header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header a {
+  text-decoration: none;
+  color: #222;
+  transition: 0.3s;
+}
+.header a:hover {
+  color: #0000ff;
+}
+.header__menu {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+  font-size: 1.25rem;
+}
+.main {
+  margin-top: 80px;
+}
+.main h1 {
+  color: #fff;
+  font-size: 3rem;
+}
+.main__news {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  margin-top: 40px;
+}
+.news {
+  background: #fff;
+  border-radius: 10px;
+  padding: 2rem;
+  width: 600px;
+  height: max-content;
+}
+.news__info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.btn {
+  border: none;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+.news.show-text p {
+  display: none;
+}

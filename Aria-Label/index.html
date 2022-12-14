@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="./script.js"></script>
+  <title>HTML: Aria-label</title>
+  <!-- css -->
+  <link rel="stylesheet" href="./index.css">
+  <!-- script -->
+  <script src="./index.js" defer></script>
+</head>
+
+<body>
+  <header class="header">
+    <div class="container">
+      <img src="https://kenzie.com.br/_next/image?url=%2Fimages%2Flogo.png&w=256&q=75" alt="Logo Kenzie">
+      <ul class="header__menu">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Notícias</a></li>
+        <li><a href="#">Contato</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main class="main container">
+    <h1>Notícias</h1>
+    <ul class="main__news">
+      <li class="news show-text">
+        <div class="news__info">
+          <h2>Notícia 1</h2>
+          <button class="btn" aria-label="Exibir Noticia">+</button>
+        </div>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto, omnis delectus iure aliquid sit similique itaque inventore neque, fugiat quaerat iste unde. Modi cum impedit pariatur sed amet perspiciatis. Voluptas!</p>
+      </li>
+      <li class="news show-text">
+        <div class="news__info">
+          <h2>Notícia 2</h2>
+          <button class="btn" aria-label="Exibir Noticia">+</button>
+        </div>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto, omnis delectus iure aliquid sit similique itaque inventore neque, fugiat quaerat iste unde. Modi     cum impedit pariatur sed amet perspiciatis. Voluptas!</p>
+      </li>
+    </ul>
+  </main>
+</body>
+</html>
